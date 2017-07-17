@@ -7,6 +7,10 @@ class CatsController < ApplicationController
     @cat = Cat.find(params[:id])
   end
 
+  def new
+    @cat = Cat.new
+  end
+
   def create
     @cat = Cat.new(cat_params)
     if @cat.save
