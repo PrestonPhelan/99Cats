@@ -6,4 +6,20 @@ class CatsController < ApplicationController
   def show
     @cat = Cat.find(params[:id])
   end
+
+  def create
+    cat = Cat.new(cat_params)
+    if cat.save
+      redirect_to cat_url(cat)
+    else
+      flash.now = cat.errors.full_messages
+      render :new
+    end
+  end
+
+  private
+
+  def cat_params
+    params.require(:cat).permit(:birth_date, :color, :name, :sex, :description)
+  end
 end
