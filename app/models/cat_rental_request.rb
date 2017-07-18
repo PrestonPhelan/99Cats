@@ -6,7 +6,7 @@ class CatRentalRequest < ApplicationRecord
 
   # CUSTOM VALIDATION
   # Request cannot overlap another approved request for same cat
-  validates :does_not_overlap_approved_request
+  validate :does_not_overlap_approved_request
 
   belongs_to :cat
 
