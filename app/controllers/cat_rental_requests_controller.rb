@@ -9,6 +9,17 @@ class CatRentalRequestsController < ApplicationController
     end
   end
 
+  def approve
+    @request = CatRentalRequest.find(params[:request_id])
+    @request.approve!
+    redirect_to cat_url(@request.cat)
+  end
+
+  def deny
+    request.deny!
+    redirect_to cat_url(request.cat)
+  end
+
   private
 
   def request_params

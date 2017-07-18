@@ -10,6 +10,10 @@ class CatRentalRequest < ApplicationRecord
 
   belongs_to :cat
 
+  def pending?
+    self.status == "PENDING"
+  end
+
   def approve!
     self.transaction do
       self.status = "APPROVED"
