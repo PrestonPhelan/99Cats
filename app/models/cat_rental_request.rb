@@ -10,6 +10,21 @@ class CatRentalRequest < ApplicationRecord
 
   belongs_to :cat
 
+  def approve!
+    self.transaction do
+      self.status = "APPROVED"
+      self.save!
+      self.overlapping_pending_requests.each do |request|
+        request.deny!
+      end
+    end
+  end
+
+  def deny!
+    self.status = "DENIED"
+    self.save!
+  end
+
   def overlapping_requests
     self.cat.cat_rental_requests
       .where.not([
@@ -20,6 +35,10 @@ class CatRentalRequest < ApplicationRecord
 
   def overlapping_approved_requests
     overlapping_requests.where(status: "APPROVED")
+  end
+
+  def overlapping_pending_requests
+    overlapping_requests.where(status: "PENDING")
   end
 
   def does_not_overlap_approved_request
