@@ -1,6 +1,7 @@
 <h3>Request a Cat!</h3>
 
 <form class="" action="<%= cat_rental_requests_url %>" method="post">
+  <%= auth_token_input %>
   <select class="" name="cat_rental_request[cat_id]">
     <option disabled selected>--select cat--</option>
     <% Cat.all.each do |cat| %>

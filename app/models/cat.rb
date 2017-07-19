@@ -8,7 +8,7 @@ class Cat < ApplicationRecord
   has_many :cat_rental_requests, dependent: :destroy
   belongs_to :owner,
     foreign_key: :user_id,
-    class_name: :user
+    class_name: :User
 
   def age
     (Date.today - birth_date).to_i / 365
