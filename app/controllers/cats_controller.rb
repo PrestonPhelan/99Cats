@@ -40,7 +40,7 @@ class CatsController < ApplicationController
   end
 
   def ensure_owner
-    @cat = Cat.find(params[:id])
-    redirect_to cats_url unless @cat.owner == current_user
+    @cat = current_user.cats.where(id: params[:id])
+    redirect_to cats_url unless @cat
   end
 end
