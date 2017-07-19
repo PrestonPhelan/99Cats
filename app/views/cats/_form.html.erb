@@ -3,6 +3,9 @@
 <% method = cat.persisted? ? "patch" : "post" %>
 
 <h3><%= "#{form_type} Cat" %></h3>
+
+<%= render "errors" %>
+
 <form class="" action="<%= action %>" method="post">
   <input type="hidden" name="_method" value="<%= method %>">
 
