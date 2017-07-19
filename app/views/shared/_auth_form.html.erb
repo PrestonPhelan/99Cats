@@ -1,0 +1,12 @@
+<% action = type == "new_user" ? users_url : session_url %>
+<% button_text = type == "new_user" ? "Sign Up" : "Sign In" %>
+
+<form class="" action="<%= action %>" method="post">
+  <label for="user_username">Username</label>
+  <input type="text" name="user[user_name]" value="" id="user_username">
+
+  <label for="user_password">Password</label>
+  <input type="password" name="user[password]" value="" id="user_password">
+
+  <input type="submit" value="<%= button_text %>">
+</form>
