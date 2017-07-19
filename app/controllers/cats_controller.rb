@@ -1,4 +1,6 @@
 class CatsController < ApplicationController
+  before_action :ensure_owner, only: [:edit, :update]
+
   def index
     @cats = Cat.all
   end
@@ -22,12 +24,7 @@ class CatsController < ApplicationController
     end
   end
 
-  def edit
-    @cat = Cat.find(params[:id])
-  end
-
   def update
-    @cat = Cat.find(params[:id])
     if @cat.update(cat_params)
       redirect_to cat_url(@cat)
     else
@@ -40,5 +37,10 @@ class CatsController < ApplicationController
 
   def cat_params
     params.require(:cat).permit(:birth_date, :color, :name, :sex, :description)
+  end
+
+  def ensure_owner
+    @cat = Cat.find(params[:id])
+    redirect_to cats_url unless @cat.owner == current_user
   end
 end
