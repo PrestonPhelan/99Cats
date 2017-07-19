@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :ensure_no_user!, only: [:create, :new]
+
   def new
 
   end

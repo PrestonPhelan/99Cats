@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :ensure_no_user!
+
   def new
     @user = User.new
   end

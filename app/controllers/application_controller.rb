@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :signed_in?
 
+  def ensure_no_user!
+    redirect_to cats_url if current_user
+  end
+
   def current_user
     @current_user ||= User.find_by_session_token(session[:session_token])
   end
