@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  attr_reader :password
+
   after_initialize :ensure_session_token
 
   validates :user_name, :session_token, :password_digest, presence: true
