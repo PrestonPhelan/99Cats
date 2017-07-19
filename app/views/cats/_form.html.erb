@@ -4,10 +4,11 @@
 
 <h3><%= "#{form_type} Cat" %></h3>
 
-<%= render "errors" %>
+<%= render "shared/errors" %>
 
 <form class="" action="<%= action %>" method="post">
   <input type="hidden" name="_method" value="<%= method %>">
+  <%= auth_token_input %>
 
   <label for="cat_name">Name</label>
   <input type="text" name="cat[name]" value="<%= cat.name %>" id="cat_name" />

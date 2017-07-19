@@ -1,7 +1,10 @@
 <% action = type == "new_user" ? users_url : session_url %>
 <% button_text = type == "new_user" ? "Sign Up" : "Sign In" %>
 
+<%= render "shared/errors" %>
+
 <form class="" action="<%= action %>" method="post">
+  <%= auth_token_input %>
   <label for="user_username">Username</label>
   <input type="text" name="user[user_name]" value="" id="user_username">
 
