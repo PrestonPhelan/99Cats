@@ -37,6 +37,7 @@ No description available for this cat
   </tr>
   <% @cat.cat_rental_requests.order(:start_date).each do |request| %>
     <tr>
+      <td> <%= request.user.user_name %></td>
       <td> <%= request.start_date %></td>
       <td> <%= request.end_date %></td>
       <td>
