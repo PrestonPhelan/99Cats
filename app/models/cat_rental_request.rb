@@ -2,13 +2,14 @@ class CatRentalRequest < ApplicationRecord
   STATUS_OPTIONS = %w(PENDING APPROVED DENIED)
 
   validates :status, inclusion: { in: STATUS_OPTIONS }
-  validates :cat_id, :start_date, :end_date, :status, presence: true
+  validates :cat_id, :start_date, :end_date, :status, :user, presence: true
 
   # CUSTOM VALIDATION
   # Request cannot overlap another approved request for same cat
   validate :does_not_overlap_approved_request
 
   belongs_to :cat
+  belongs_to :user
 
   def pending?
     self.status == "PENDING"

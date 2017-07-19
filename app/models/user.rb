@@ -4,6 +4,7 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token
 
   has_many :cats
+  has_many :cat_rental_requests
 
   validates :user_name, :session_token, :password_digest, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
